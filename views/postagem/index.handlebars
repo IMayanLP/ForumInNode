@@ -1,0 +1,68 @@
+<div class="card mt-3">
+    <div class="card-body">
+        <h2>{{usuario.nome}}</h2>
+        <h3>{{postagem.titulo}}</h3>
+        <hr><small>{{postagem.data}}</small><hr>
+        <h4>{{postagem.descricao}}</h4>
+        <p>{{postagem.conteudo}}</p>
+
+    <p><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Comentar...</a></p>
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form action="/user/comment/add" method="post">
+                <input type="hidden" name="postSlug" value="{{postagem.slug}}">
+                <input type="hidden" name="userId" value="{{user._id}}">
+                <input type="hidden" name="postId" value="{{postagem._id}}">
+                <textarea name="comentario" class="form-control" placeholder="digite seu comentario aqui"></textarea><br>
+                <input type="submit" class="btn btn-success btn-block" value="Comentar">
+            </form>
+        </div>
+    </div><hr>
+
+        {{!-- {{#if user.admin}}
+            <h1>ADMIN</h1>
+        {{else}}
+            <h1>NAO ADMIN</h1>
+        {{/if}} --}}
+
+        {{#each comentarios}}
+            <div class="card-footer mt-2">
+                {{#if respostaPara}}
+                    <div class="card">
+                        <div class="card-body">
+                            <strong><p>{{respostaPara}}</p></strong>
+                            <p>{{resposta}}</p>
+                        </div>
+                    </div>
+                {{else}}
+                {{/if}}
+                <hr>
+            <strong>{{usuario.nome}}</strong>
+            <p>{{conteudo}}</p>
+
+        <p></p><a class="btn btn-sm btn-outline-dark" data-toggle="collapse" href="#collapseExample-{{_id}}" role="button" aria-expanded="false" aria-controls="collapseExample">Responder</a></p>
+        {{!-- <a href="/admin/posts/deleteComment/{{_id}}"><input type="button" value="Deletar comentario"></a> --}}
+            
+    <div class="collapse" id="collapseExample-{{_id}}"> 
+    <div class="card card-body">
+        <form action="/user/resp/add" method="post">
+            <input type="hidden" name="postSlug" value="{{postagem.slug}}">
+            <input type="hidden" name="postId" value="{{postagem._id}}">
+            <input type="hidden" name="postContent" value="{{conteudo}}">
+            <input type="hidden" name="commentUser" value="{{usuario.nome}}">
+            <input type="hidden" name="commentId" value="{{_id}}">
+            <textarea name="resposta" class="form-control" placeholder="digite sua resposta aqui"></textarea><br>
+            <input type="submit" class="btn btn-success btn-block" value="Responder">
+        </form>
+    </div>
+    </div>
+    </div>
+
+        {{else}}
+    <div class="card-footer">
+        <h6>Nenhum comentario</h6>
+    </div>
+        {{/each}}
+    </div>
+    
+</div>

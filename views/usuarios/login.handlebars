@@ -1,0 +1,10 @@
+<form class="bg-dark box" action="/user/login" method="post">
+    {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+    {{else}}
+    {{/if}}
+  <h1>Login</h1><hr>
+  <input type="email" name="email" placeholder="Digite seu email" required>
+  <input type="password" name="senha" placeholder="Digite sua senha" required>
+  <input type="submit" name="cadastrar" value="Entrar">
+</form>

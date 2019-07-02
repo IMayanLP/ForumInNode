@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Forum NodeJS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    {{#if user}}
+      {{#if user.admin}}
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/listUsers">Usuarios</a>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+        <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/admin/categories">Editar categorias</a>
+          <a class="dropdown-item" href="/categories">Ver categorias</a>
+        </div>
+      </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+        <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Postagens</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/admin/posts">Editar postagens</a>
+          <a class="dropdown-item" href="/user/meusPosts">Minhas postagens</a>
+        </div>
+      </div>
+      </li>
+    {{else}}
+      <li class="nav-item">
+        <a class="nav-link" href="/categories">Categorias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/meusPosts">Minhas postagens</a>
+      </li>
+    {{/if}}
+    {{/if}}
+    </ul>
+    {{#if user}}
+      <ul class="navbar-nav">
+        <li class="nav-link">Olá, {{user.nome}}</li>
+      </ul>
+      <a href="/user/edit/{{user._id}}"><button class="btn btn-outline-light mr-sm-2" type="submit">Editar Perfil</button></a>
+      <a href="/user/logout"><button class="btn btn-outline-light mr-sm-2" type="submit">Logout</button></a>
+    {{else}}
+      <a href="/user/register"><button class="btn btn-outline-light mr-sm-2" type="submit">Register</button></a>
+      <a href="/user/login"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button></a>
+    {{/if}}
+  </div>
+</nav>

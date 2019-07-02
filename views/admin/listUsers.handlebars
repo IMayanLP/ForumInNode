@@ -1,0 +1,28 @@
+<h1>Usuarios:</h1><hr>
+{{#each usuarios}}
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-11">
+                    <h2>{{nome}}</h2>
+            E-mail: <strong>{{email}}</strong>
+                </div>
+                <div class="col-md-1">
+                    <form action="/admin/delete" method="post">
+                    <input type="hidden" name="userId" value="{{_id}}">
+                    <input type="submit" class="btn btn-block btn-danger" value="Banir">
+                    </form>
+                </div>
+            </div>
+            {{#if admin}}
+                <hr><h6>Nivel:</h6>
+                <strong>Administrador</strong>
+            {{else}}
+                <hr><h6>Nivel:</h6>
+                <strong>Usuario</strong>
+            {{/if}}
+        </div>
+    </div>
+{{else}}
+    <h2>Nenhum usuario registrado</h2>
+{{/each}}
